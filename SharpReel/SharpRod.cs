@@ -15,23 +15,19 @@ namespace SharpReel
         private StreamWriter? pondInput { get; set; }
         private StreamReader? pondOutput { get; set; }
         private StreamReader? pondError { get; set; }
-        private string pondLocation { get; set; }
+        private readonly string pondLocation = "./stockfish/stockfish-windows-x86-64-avx2.exe";
 
-        public SharpRod(string pondLocation)
-        {
-            this.pondLocation = pondLocation;
-        }
 
         private async Task CastLine(string bait)
         {
-            await catchInProgress!.StandardInput.WriteLineAsync(bait);
+            await pondInput!.WriteLineAsync(bait);
         }
 
         private async Task<string> ReelIn(string reelKey)
         {
             StringBuilder catchOfTheDay = new();
             string? bite = null;
-            while ((bite = await catchInProgress!.StandardOutput.ReadLineAsync()) != null)
+            while ((bite = await pondOutput!.ReadLineAsync()) != null)
             {
                 catchOfTheDay.Append(bite + "\n");
                 if (bite.Contains(reelKey))

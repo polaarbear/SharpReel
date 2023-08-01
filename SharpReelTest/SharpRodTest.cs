@@ -7,7 +7,7 @@ namespace SharpReelTest
         [SetUp]
         public void BaitHookTest()
         {
-            TestRod = new SharpRod("./stockfish/stockfish-windows-x86-64-avx2.exe");
+            TestRod = new SharpRod();
         }
 
         [Test]
