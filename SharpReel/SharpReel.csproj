@@ -1,15 +1,28 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<ItemGroup>
+		<None Update="stockfish\stockfish-windows-x86-64-avx2.exe">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<Content Update="..\LICENCE">
+			<Pack>true</Pack>
+		</Content>
+		<Content Update="..\README.md">
+			<Pack>true</Pack>
+		</Content>
+		<None Update="..\stockfish\**">
+			<Pack>true</Pack>
+		</None>
+	</ItemGroup>
 
-  <ItemGroup>    
-    <None Update="stockfish\stockfish-windows-x86-64-avx2.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>    
-  </ItemGroup>
-
+	<PropertyGroup>
+		<PackageId>R4DH4TT3R.SharpReel</PackageId>
+		<Version>0.0.1</Version>
+		<Authors>R4DH4TT3R</Authors>
+	</PropertyGroup>
 </Project>
