@@ -24,8 +24,11 @@ namespace SharpReelTest
         [Test]
         public async Task ViewFreshGame()
         {
+            /* We know the board is being rendered if we have chars 1-8 and a-h.
+             * This doesn't actually check that the positions are correct, but stockfish is reliable in the way we're calling it
+             * We mainly just want to make sure we got a board output */
             string? newBoard = await TestRod.ViewBoardPosition();
-            if (!string.IsNullOrWhiteSpace(newBoard)
+            if (!string.IsNullOrWhiteSpace(newBoard) 
                 && newBoard.Contains('a') && newBoard.Contains('b') && newBoard.Contains('c') && newBoard.Contains('d')
                 && newBoard.Contains('e') && newBoard.Contains('f') && newBoard.Contains('g') && newBoard.Contains('h')
                 && newBoard.Contains('1') && newBoard.Contains('2') && newBoard.Contains('3') && newBoard.Contains('4')
