@@ -34,5 +34,33 @@ namespace SharpReelTest
             else
                 Assert.Fail();
         }
+
+        [Test]
+        public async Task ViewMoveListGame()
+        {
+            List<string> moves = new() { "d2d4", "e7e5" };
+            string? movedBoard = await TestRod.ViewBoardPosition(moves);
+            if(!string.IsNullOrWhiteSpace(movedBoard))
+            {
+                string[] splitBoard = movedBoard.Split('\n');
+                if (splitBoard[7][19] == 'p' && splitBoard[9][15] == 'P') //These are the positions of the two pawns that have moved
+                    Assert.Pass();
+            }
+            Assert.Fail();
+        }
+
+        [Test]
+        public async Task ViewFENGame()
+        {
+            string fen = "8/8/8/4k3/4P3/8/4K3/8 w - - 0 1";
+            string? movedBoard = await TestRod.ViewBoardPosition(fen);
+            if (!string.IsNullOrWhiteSpace(movedBoard))
+            {
+                string[] splitBoard = movedBoard.Split('\n');
+                if (splitBoard[7][19] == 'k' && splitBoard[9][19] == 'P' && splitBoard[13][19] == 'K') //Three pieces in this endgame FEN
+                    Assert.Pass();
+            }
+            Assert.Fail();
+        }
     }
 }

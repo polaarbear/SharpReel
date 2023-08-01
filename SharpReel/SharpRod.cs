@@ -146,7 +146,7 @@ namespace SharpReel
         {
             if (await GoToPond())
             {
-                await pondInput!.WriteLineAsync("position startpos " + string.Join(' ', moveList));
+                await pondInput!.WriteLineAsync("position startpos move " + string.Join(' ', moveList));
                 string ourCatch = await RenderBoardPosition();
                 LeavePond();
                 return ourCatch;
@@ -167,7 +167,7 @@ namespace SharpReel
             {
                 if (IsBoardRow(row))
                 {
-                    boardBuilder.Append(row);
+                    boardBuilder.Append(row + "\n");
                 }
             }
             return boardBuilder.ToString();
