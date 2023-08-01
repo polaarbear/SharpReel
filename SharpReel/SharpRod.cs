@@ -17,12 +17,15 @@ namespace SharpReel
         private StreamReader? pondError { get; set; }
         private readonly string pondLocation = "./stockfish/stockfish-windows-x86-64-avx2.exe";
 
+        #region Generic Stockfish Write/Read
 
+        //Writes a command to stockfish input which will then fill the output buffer
         private async Task CastLine(string bait)
         {
             await pondInput!.WriteLineAsync(bait);
         }
 
+        //Reads from stockfish output buffer. Stops when it reaches the reelKey to prevent mystery hang?
         private async Task<string> ReelIn(string reelKey)
         {
             StringBuilder catchOfTheDay = new();
@@ -35,6 +38,8 @@ namespace SharpReel
             }
             return catchOfTheDay.ToString();
         }
+
+        #endregion
 
         #region Stockfish Process Management
 
