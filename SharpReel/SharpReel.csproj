@@ -5,24 +5,26 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
-	  <Content Include="img\r4dh4tt3r_icon.ico" />
-	  <None Include="..\LICENSE">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
-	  <None Include="..\README.md">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
-		<None Include="img\r4dh4tt3r_logo.png">
-		  <Pack>True</Pack>
-		  <PackagePath>\</PackagePath>
+		<Content Include="img\r4dh4tt3r_icon.ico" />
+		<None Include="..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
 		</None>
+		<None Include="img\r4dh4tt3r_logo.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+
 		<None Update="stockfish\stockfish-windows-x86-64-avx2.exe">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
-		<None Update="\stockfish\**">
+		<None Update="stockfish\**">
 			<Pack>true</Pack>
+			<PackagePath>\</PackagePath>
 		</None>
 	</ItemGroup>
 	<PropertyGroup>
