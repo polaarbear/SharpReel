@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,18 +17,11 @@ namespace SharpReel
         private StreamWriter? pondInput { get; set; }
         private StreamReader? pondOutput { get; set; }
         private StreamReader? pondError { get; set; }
-        private readonly string pondLocation = "./stockfish-windows-x86-64-avx2.exe";
+        private readonly string pondLocation = "";
 
-        public SharpRod()
+        public SharpRod(string pondLocation)
         {
-            if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                pondLocation = "./stockfish-windows-x86-64-avx2.exe";
-            }
-            else if(RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            {
-                pondLocation = "./stockfish-ubuntu-x86-64-avx2";
-            }
+            this.pondLocation = pondLocation;
         }
 
         #region Generic Stockfish Write/Read
@@ -112,11 +106,11 @@ namespace SharpReel
 
         private async void LeavePond()
         {
-            if(catchInProgress != null)
+            if (catchInProgress != null)
             {
                 await pondInput!.WriteLineAsync("quit");
                 await Task.Delay(1000); //Give stockfish a change to quit
-                if(!catchInProgress.HasExited)
+                if (!catchInProgress.HasExited)
                 {
                     catchInProgress.Kill();
                     catchInProgress = null;
@@ -126,7 +120,7 @@ namespace SharpReel
 
         #endregion
 
-        #region View Board Positions
+        #region View Board
 
         //View an empty board
         public async Task<string?> ViewBoardPosition()
@@ -198,6 +192,71 @@ namespace SharpReel
             return false;
         }
 
+        #endregion
+
+        #region Analyze Board
+
+        //Empty board state
+        public async Task<string?> FindBestMove(int moveTimeMS)
+        {
+            if (await GoToPond())
+            {
+                await pondInput!.WriteLineAsync("position startpos");
+                await pondInput!.WriteLineAsync($"go movetime {moveTimeMS}");
+                string? bestMove = null;
+                while ((bestMove = await pondOutput!.ReadLineAsync()) != null)
+                {
+                    if (bestMove.Contains("bestmove"))
+                    {
+                        return bestMove;
+                    }
+                }
+                LeavePond();
+            }
+            return null;
+        }
+
+        //Find base move via FEN string
+        public async Task<string?> FindBestMove(string fen, int moveTimeMS)
+        {
+            if (await GoToPond())
+            {
+                await pondInput!.WriteLineAsync($"position fen {fen}");
+                await pondInput!.WriteLineAsync($"go movetime {moveTimeMS}");
+                string? bestMove = null;
+                while ((bestMove = await pondOutput!.ReadLineAsync()) != null)
+                {
+                    if (bestMove.Contains("bestmove"))
+                    {
+                        return bestMove;
+                    }
+                }
+                LeavePond();
+
+            }
+            return null;
+        }
+
+        //Find best move by movelist
+        public async Task<string?> FindBestMove(List<string> moves, int moveTimeMS)
+        {
+            if (await GoToPond())
+            {
+                await pondInput!.WriteLineAsync($"position startpos move " + string.Join(' ', moves));
+                await pondInput!.WriteLineAsync($"go movetime {moveTimeMS}");
+                string? bestMove = null;
+                while ((bestMove = await pondOutput!.ReadLineAsync()) != null)
+                {
+                    if (bestMove.Contains("bestmove"))
+                    {
+                        return bestMove;
+                    }
+                }
+                LeavePond();
+
+            }
+            return null;
+        }
         #endregion
     }
 }

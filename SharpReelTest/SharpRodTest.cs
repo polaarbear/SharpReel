@@ -7,7 +7,7 @@ namespace SharpReelTest
         [SetUp]
         public void BaitHookTest()
         {
-            TestRod = new SharpRod();
+            TestRod = new SharpRod("./stockfish-windows-x86-64-avx2.exe");
         }
 
         [Test]
@@ -63,6 +63,36 @@ namespace SharpReelTest
                 if (splitBoard[7][19] == 'k' && splitBoard[9][19] == 'P' && splitBoard[13][19] == 'K') //Three pieces in this endgame FEN
                     Assert.Pass();
             }
+            Assert.Fail();
+        }
+
+
+        [Test]
+        public async Task BestMoveNewGame()
+        {
+            string? bestMove = await TestRod.FindBestMove(1000);
+            if (!string.IsNullOrWhiteSpace(bestMove))
+                Assert.Pass();
+            Assert.Fail();
+        }
+
+        [Test]
+        public async Task BestMoveFEN()
+        {
+            string fen = "8/8/8/4k3/4P3/8/4K3/8 w - - 0 1";
+            string? bestMove = await TestRod.FindBestMove(fen, 1000);
+            if (bestMove != null && bestMove.Contains("bestmove") && bestMove.Contains("ponder"))
+                Assert.Pass();
+            Assert.Fail();
+        }
+
+        [Test]
+        public async Task BestMoveList()
+        {
+            List<string> moves = new() { "d2d4", "e7e5" };
+            string? bestMove = await TestRod.FindBestMove(moves, 1000);
+            if (bestMove != null && bestMove.Contains("bestmove") && bestMove.Contains("ponder"))
+                Assert.Pass();
             Assert.Fail();
         }
     }
