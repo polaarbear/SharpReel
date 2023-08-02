@@ -4,25 +4,50 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
+	<ItemGroup>
+	  <Content Include="img\r4dh4tt3r_icon.ico" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Include="..\LICENSE">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Include="..\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
 
 	<ItemGroup>
+		<None Update="img\r4dh4tt3r_logo.png">
+		  <Pack>True</Pack>
+		  <PackagePath>\</PackagePath>
+		</None>
 		<None Update="stockfish\stockfish-windows-x86-64-avx2.exe">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
-		<Content Update="..\LICENCE">
-			<Pack>true</Pack>
-		</Content>
-		<Content Update="..\README.md">
-			<Pack>true</Pack>
-		</Content>
-		<None Update="..\stockfish\**">
+		<None Update="\stockfish\**">
 			<Pack>true</Pack>
 		</None>
 	</ItemGroup>
-
 	<PropertyGroup>
 		<PackageId>R4DH4TT3R.SharpReel</PackageId>
-		<Version>0.0.1</Version>
+		<Version>0.0.2</Version>
 		<Authors>R4DH4TT3R</Authors>
+		<ApplicationIcon>img\r4dh4tt3r_icon.ico</ApplicationIcon>
+		<PlatformTarget>x64</PlatformTarget>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>SharpReel</Title>
+		<Description>A C# wrapper for the Stockfish chess engine</Description>
+		<Copyright>2023 R4DH4TT3R</Copyright>
+		<PackageProjectUrl></PackageProjectUrl>
+		<PackageIcon>r4dh4tt3r_logo.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/polaarbear/SharpReel</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>chess;c#;stockfish;</PackageTags>
+		<PackageReleaseNotes>Test release</PackageReleaseNotes>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 	</PropertyGroup>
 </Project>
