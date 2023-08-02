@@ -9,6 +9,9 @@
 		<Content Include="stockfish-windows-x86-64-avx2.exe" PackagePath="lib/net6.0">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
+		<Content Include="stockfish-ubuntu-x86-64-avx2" PackagePack="lib/net6.0">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
 		<None Include="..\LICENSE">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>

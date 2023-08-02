@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,6 +17,18 @@ namespace SharpReel
         private StreamReader? pondOutput { get; set; }
         private StreamReader? pondError { get; set; }
         private readonly string pondLocation = "./stockfish-windows-x86-64-avx2.exe";
+
+        public SharpRod()
+        {
+            if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                pondLocation = "./stockfish-windows-x86-64-avx2.exe";
+            }
+            else if(RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                pondLocation = "./stockfish-ubuntu-x86-64-avx2";
+            }
+        }
 
         #region Generic Stockfish Write/Read
 
