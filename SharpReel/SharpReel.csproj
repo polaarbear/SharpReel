@@ -6,10 +6,17 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<Content Include="img\r4dh4tt3r_icon.ico" />
-		<Content Include="stockfish-windows-x86-64-avx2.exe" PackagePath="lib/net6.0">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="stockfish-windows-x86-64-avx2.exe">
+			<Pack>True</Pack>
+			<PackagePath>lib/net6.0</PackagePath>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Content Include="stockfish-ubuntu-x86-64-avx2" PackagePack="lib/net6.0">
+		<Content Include="stockfish-ubuntu-x86-64-avx2">
+			<Pack>True</Pack>
+			<PackagePath>lib/net6.0</PackagePath>
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 		<None Include="..\LICENSE">
@@ -23,7 +30,7 @@
 		<None Include="..\README.md">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
-		</None>	
+		</None>
 		<None Update="stockfish\**">
 			<Pack>true</Pack>
 			<PackagePath>\</PackagePath>
@@ -31,7 +38,7 @@
 	</ItemGroup>
 	<PropertyGroup>
 		<PackageId>R4DH4TT3R.SharpReel</PackageId>
-		<Version>0.0.3</Version>
+		<Version>0.0.4</Version>
 		<Authors>R4DH4TT3R</Authors>
 		<ApplicationIcon>img\r4dh4tt3r_icon.ico</ApplicationIcon>
 		<PlatformTarget>x64</PlatformTarget>
