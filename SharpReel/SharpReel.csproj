@@ -6,6 +6,9 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<Content Include="img\r4dh4tt3r_icon.ico" />
+		<Content Include="stockfish-windows-x86-64-avx2.exe" PackagePath="lib/net6.0">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
 		<None Include="..\LICENSE">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
@@ -17,11 +20,7 @@
 		<None Include="..\README.md">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
-		</None>
-
-		<None Update="stockfish\stockfish-windows-x86-64-avx2.exe">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
+		</None>	
 		<None Update="stockfish\**">
 			<Pack>true</Pack>
 			<PackagePath>\</PackagePath>

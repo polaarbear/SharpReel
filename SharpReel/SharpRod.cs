@@ -15,7 +15,7 @@ namespace SharpReel
         private StreamWriter? pondInput { get; set; }
         private StreamReader? pondOutput { get; set; }
         private StreamReader? pondError { get; set; }
-        private readonly string pondLocation = "./stockfish/stockfish-windows-x86-64-avx2.exe";
+        private readonly string pondLocation = "./stockfish-windows-x86-64-avx2.exe";
 
         #region Generic Stockfish Write/Read
 
