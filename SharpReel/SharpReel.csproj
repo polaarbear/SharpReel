@@ -6,8 +6,6 @@
 	</PropertyGroup>
 	<ItemGroup>
 	  <Content Include="img\r4dh4tt3r_icon.ico" />
-	</ItemGroup>
-	<ItemGroup>
 	  <None Include="..\LICENSE">
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>
@@ -16,10 +14,7 @@
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>
 	  </None>
-	</ItemGroup>
-
-	<ItemGroup>
-		<None Update="img\r4dh4tt3r_logo.png">
+		<None Include="img\r4dh4tt3r_logo.png">
 		  <Pack>True</Pack>
 		  <PackagePath>\</PackagePath>
 		</None>
@@ -41,7 +36,7 @@
 		<Description>A C# wrapper for the Stockfish chess engine</Description>
 		<Copyright>2023 R4DH4TT3R</Copyright>
 		<PackageProjectUrl></PackageProjectUrl>
-		<PackageIcon>r4dh4tt3r_logo.png</PackageIcon>
+		<PackageIconUrl>img\r4dh4tt3r_logo.png</PackageIconUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/polaarbear/SharpReel</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
